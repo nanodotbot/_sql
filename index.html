@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nanodots</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Mulish:wght@200&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/articles.css">
+    <link rel="stylesheet" href="./css/dots.css">
+</head>
+<body>
+    <main>
+        <section>
+            <h1>statements</h1>
+            <article>
+<pre><code class="sql"><span>CREATE TABLE</span> users <span class="thi">(</span>
+    id INTEGER <span>PRIMARY KEY</span>, 
+    name TEXT <span>UNIQUE</span>,
+    password TEXT <span>NOT</span> <span class="fif">NULL</span>,
+    mail TEXT <span>DEFAULT</span> <span class="fou">'not available'</span>
+<span class="thi">)</span>;
+
+<span>INSERT INTO</span> users <span class="thi">(</span>id, name, password<span class="thi">)</span>
+<span>VALUES</span> <span class="thi">(</span>, <span class="fou">'rotkäppchen'</span>, <span class="fou">'123456'</span><span class="thi">)</span>;
+
+<span>SELECT</span> name <span>FROM</span> users;
+<span>SELECT</span> * <span>FROM</span> users;
+
+<span>ALTER TABLE</span> users 
+<span>ADD COLUMN</span> mail TEXT;
+
+<span>UPDATE</span> users
+<span>SET</span> mail = <span class="fou">'narziss@protonmail.com'</span>
+<span>WHERE</span> id = <span class="sec">4</span>;
+
+<span>DELETE FROM</span> users 
+<span>WHERE</span> mail <span>IS</span> <span class="fif">NULL</span>;</code></pre>
+            </article>
+            <h1>queries</h1>
+            <article>
+<pre><code class="sql"><span>SELECT</span> name, mail 
+<span>FROM</span> users;
+
+<span>SELECT</span> name AS <span class="fou">'nomen'</span>
+<span>FROM</span> users;
+
+<span>SELECT DISTINCT</span> mail 
+<span>FROM</span> users;
+
+<span>SELECT</span> *
+<span>FROM</span> users
+<span>WHERE</span> mail = <span class="fou">'not available'</span>;
+
+<span>SELECT</span> * 
+<span>FROM</span> movies
+<span>WHERE</span> mail <span>LIKE</span> <span class="fou">'%@protonmail.__'</span>;
+<span class="com">--LIKE is not case sensitive</span>
+
+<span>SELECT</span> name
+<span>FROM</span> users 
+<span>WHERE</span> mail <span>IS NOT</span> <span class="fif">NULL</span>;
+
+<span>SELECT</span> *
+<span>FROM</span> users 
+<span>WHERE</span> id <span>BETWEEN</span> <span class="sec">1</span> AND <span class="sec">10</span>;
+
+
+
+</code></pre>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#">just a link</a>
+    </footer>
+
+    <script src="./js/nav.js"></script>
+    <script src="./js/textarea.js"></script>
+</body>
+</html>
