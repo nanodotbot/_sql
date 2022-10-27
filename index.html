@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sql</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Mulish:wght@200&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/general.css">
+    <link rel="stylesheet" href="./css/articles.css">
+    <link rel="stylesheet" href="./css/dots.css">
+</head>
+<body>
+    <main>
+        <section>
+            <h1>setting up sqlite</h1>
+            <article>
+                <a href="https://www.sqlite.org/download.html">https://www.sqlite.org/download.html</a>
+                <p>sqlite-tools-win32-x86-3390000.zip</p>
+                <p>copy sqlite3.exe to C:\sqlite3\</p>
+                <p>environment variables > path > new path > c:\sqlite3</p>
+                <p>in c:\sqlite3 run</p>
+                <pre><code>winpty ./sqlite3.exe</code></pre>
+                <p>in c:\sqlite3 run:</p>
+                <pre><code>echo "alias sqlite3=\"winpty ${PWD}/sqlite3.exe\"" >> ~/.bashrc</code></pre>
+                <p>in bash run:</p>
+                <pre><code>sqlite3</code></pre>
+                <pre><code>.exit</code></pre>
+                <pre><code>.quit</code></pre>
+                <p>open or create and open db:</p>
+                <pre><code>sqlite3 databasename.db</code></pre>
+                <pre><code>.database</code></pre>
+                <p>change php.ini-development to php.ini</p>
+                <p>open php.ini</p>
+                <p>remove semicolon</p>
+                <pre><code>extension=pdo_sqlite</code></pre>
+                <p><a href="https://sqlitebrowser.org/">https://sqlitebrowser.org/</a></p>
+            </article>
+
+
+            <h1>statements</h1>
+            <article>
+<pre><code class="sql"><span>CREATE TABLE</span> users <span class="thi">(</span>
+    id INTEGER <span>PRIMARY KEY AUTOINCREMENT</span>, 
+    name TEXT <span>UNIQUE</span>,
+    password TEXT <span>NOT</span> <span class="fif">NULL</span>,
+    mail TEXT <span>DEFAULT</span> <span class="fou">'not available'</span>
+<span class="thi">)</span>;
+
+.tables
+.schema
+
+<span>INSERT INTO</span> users <span class="thi">(</span>id, name, password<span class="thi">)</span>
+<span>VALUES</span> <span class="thi">(</span><span class="sec">1</span>, <span class="fou">'rotkäppchen'</span>, <span class="fou">'123456'</span><span class="thi">)</span>;
+
+.header on
+.mode column
+
+<span>SELECT</span> name <span>FROM</span> users;
+<span>SELECT</span> * <span>FROM</span> users;
+
+<span>ALTER TABLE</span> users 
+<span>ADD COLUMN</span> mail TEXT;
+
+<span>UPDATE</span> users
+<span>SET</span> mail = <span class="fou">'narziss@protonmail.com'</span>
+<span>WHERE</span> id = <span class="sec">4</span>;
+
+<span>UPDATE</span> users
+<span>SET</span> salary = salary + <span class="sec">1000</span>;
+
+<span>DELETE FROM</span> users 
+<span>WHERE</span> mail <span>IS</span> <span class="fif">NULL</span>;
+
+<span>DELETE FROM</span> users;
+
+<span>DROP TABLE</span> users;</code></pre>
+            </article>
+
+
+            <h1>queries</h1>
+            <article>
+<pre><code class="sql"><span>SELECT</span> name, mail 
+<span>FROM</span> users;
+
+<span>SELECT</span> name AS <span class="fou">'nomen'</span>
+<span>FROM</span> users;
+
+<span>SELECT DISTINCT</span> mail 
+<span>FROM</span> users;
+
+<span>SELECT</span> *
+<span>FROM</span> users
+<span>WHERE</span> mail = <span class="fou">'not available'</span>;
+
+<span>SELECT</span> * 
+<span>FROM</span> movies
+<span>WHERE</span> mail <span>LIKE</span> <span class="fou">'%@protonmail.__'</span>;
+<span class="com">--LIKE is not case sensitive</span>
+
+<span>SELECT</span> name
+<span>FROM</span> users 
+<span>WHERE</span> mail <span>IS NOT</span> <span class="fif">NULL</span>;
+
+<span>SELECT</span> *
+<span>FROM</span> users 
+<span>WHERE</span> id <span>BETWEEN</span> <span class="sec">1</span> AND <span class="sec">10</span>
+    <span>AND</span> mail <span>LIKE</span> <span class="fou">'%@protonmail.__'</span>
+    <span>ORDER BY</span> name <span>DESC</span>
+    <span>LIMIT</span> <span class="sec">10</span>;
+
+<span>SELECT</span> *
+<span>FROM</span> users
+<span>WHERE</span> name <span>LIKE</span> <span class="fou">'%käppchen'</span>
+    <span>OR</span> mail <span>LIKE</span> <span class="fou">'%@protonmail.__'</span>;
+
+<span>SELECT</span> <span>COUNT</span>(*) <span>FROM</span> users;
+<span>SELECT</span> <span>COUNT</span>(id) <span>FROM</span> users;
+
+<span>SELECT</span> <span>MAX</span>(id) <span>FROM</span> users;
+<span>SELECT</span> <span>MIN</span>(id) <span>FROM</span> users;
+
+<span>SELECT</span> <span>AVG</span>(id) <span>FROM</span> users;
+<span>SELECT</span> <span>SUM</span>(id) <span>FROM</span> users;
+</code></pre>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#">just a link</a>
+    </footer>
+
+    <script src="./js/nav.js"></script>
+    <script src="./js/textarea.js"></script>
+</body>
+</html>
