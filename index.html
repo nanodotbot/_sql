@@ -39,15 +39,51 @@
                 <p><a href="https://sqlitebrowser.org/">https://sqlitebrowser.org/</a></p>
             </article>
 
+            <h1>setup in react</h1>
+            <article>
+                <pre class="code-block"><code>npm install sqlite3</code></pre>
+            </article>
+
 
             <h1>statements</h1>
             <article>
-<pre><code class="sql"><span>CREATE TABLE</span> users <span class="thi">(</span>
+
+<pre><code class="sql">// sqlite
+<span>CREATE TABLE</span> users <span class="thi">(</span>
     id INTEGER <span>PRIMARY KEY AUTOINCREMENT</span>, 
-    name TEXT <span>UNIQUE</span>,
+    username TEXT <span>UNIQUE</span>,
     password TEXT <span>NOT</span> <span class="fif">NULL</span>,
-    mail TEXT <span>DEFAULT</span> <span class="fou">'not available'</span>
+    mail TEXT <span>DEFAULT</span> <span class="fou">'not available'</span>,
+    created_at TEXT <span>DEFAULT</span> <span>CURRENT_TIMESTAMP</span>
 <span class="thi">)</span>;
+
+<span>CREATE TABLE</span> posts <span class="thi">(</span>
+    id INTEGER <span>PRIMARY KEY AUTOINCREMENT</span>,
+    user TEXT <span>NOT</span> <span class="fif">NULL</span>,
+    message TEXT,
+    created_at TEXT <span>DEFAULT</span> <span>CURRENT_TIMESTAMP</span>,
+    FOREIGN KEY (user) <span>REFERENCES</span> users (username)
+<span class="thi">)</span>;
+
+// mysql
+<span>CREATE TABLE</span> users (
+    id <span class="sec">int</span> <span>NOT</span> <span class="fou">NULL</span> <span>AUTO_INCREMENT</span>,
+    username <span class="sec">varchar(255)</span> <span>NOT</span> <span class="fou">NULL</span>,
+    password <span class="sec">varchar(255)</span> <span>NOT</span> <span class="fou">NULL</span>,
+    created_at <span class="sec">timestamp</span> <span>DEFAULT CURRENT_TIMESTAMP()</span>,
+    <span>PRIMARY KEY</span>(id),
+    <span>UNIQUE</span>(username)
+);
+<span>CREATE TABLE</span> posts (
+    id <span class="sec">int</span> <span>NOT</span> <span class="fou">NULL</span> <span>AUTO_INCREMENT</span>,
+    user <span class="sec">varchar(255)</span> <span>NOT</span> <span class="fou">NULL</span>,
+    message <span class="sec">text</span> <span>NOT</span> <span class="fou">NULL</span>,
+    created_at <span class="sec">timestamp</span> <span>DEFAULT CURRENT_TIMESTAMP()</span>,
+    <span>PRIMARY KEY</span>(id),
+    <span>FOREIGN KEY</span>(user) <span>REFERENCES</span> users(username)
+);
+
+
 
 .tables
 .schema
